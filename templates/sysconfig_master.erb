@@ -1,0 +1,12 @@
+#
+# This file is managed by puppet class <%= @name %>
+#
+# Puppet master daemon startup configuration
+#
+<% if scope.lookupvar('::operatingsystem') == 'Ubuntu' -%>
+START=yes
+PORT=8140
+DAEMON_OPTS=--config=<%= @config_file %>
+<% else -%>
+PUPPETMASTER_EXTRA_OPTS=--config=<%= @config_file %>
+<% end -%>

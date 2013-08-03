@@ -1,0 +1,20 @@
+#
+# This file is managed by puppet.
+#
+# Configuration file for puppet agent.
+#
+[main]
+    vardir  = <%= scope.lookupvar('puppet::vardir') %>
+    confdir = <%= scope.lookupvar('puppet::confdir') %>
+    logdir  = <%= scope.lookupvar('puppet::logdir') %>
+    rundir  = <%= scope.lookupvar('puppet::rundir') %>
+    ssldir  = <%= scope.lookupvar('puppet::ssldir') %>
+
+[agent]
+    classfile = $vardir/classes.txt
+    localconfig = $vardir/localconfig
+    environment = <%= @environment %>
+    server = <%= @master %>
+    report = <%= @report %>
+    runinterval = <%= @runinterval %>
+    pluginsync = <%= @pluginsync %>

@@ -1,0 +1,26 @@
+---
+:hierarchy:
+<% @hiera_hierarchy.each do |hierarchy| -%>
+  - '<%= hierarchy.gsub('${', '%{') %>'
+<% end -%>
+
+:backends:
+<% @hiera_backends.each do |backend| -%>
+  - <%= backend %>
+<% end -%>
+
+:yaml:
+  :datadir: '<%= @path_to_hieradata %>'
+
+<% if @hiera_backends.include? 'puppet' -%>
+:puppet:
+  :datasource: 'data'
+
+<% end -%>
+<% if @hiera_backends.include? 'eyaml' -%>
+:eyaml:
+  :datadir: '<%= @path_to_hieradata %>'
+  :private_key: '/etc/puppet/keys/private_key.pem'
+  :public_key: '/etc/puppet/keys/public_key.pem'
+
+<% end -%>

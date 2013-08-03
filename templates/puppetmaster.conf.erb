@@ -1,0 +1,26 @@
+#
+# This file is managed by puppet class <%= @name %>
+#
+# Puppet master configuration file
+#
+[main]
+    vardir  = <%= scope.lookupvar('puppet::vardir') %>
+    confdir = <%= scope.lookupvar('puppet::confdir') %>
+    logdir  = <%= scope.lookupvar('puppet::logdir') %>
+    rundir  = <%= scope.lookupvar('puppet::rundir') %>
+    ssldir  = <%= scope.lookupvar('puppet::ssldir') %>
+
+[master]
+    storeconfigs = <%= @storeconfigs %>
+    storeconfigs_backend = <%= @storeconfigs_backend %>
+    autosign = <%= @autosign %>
+    allow_duplicate_certs = <%= @allow_duplicate_certs %>
+<% if @routes_enabled -%>
+    reports = <%= @reports %>
+<% end -%>
+
+<% @environments.each do |env| -%>
+[<%= env %>]
+    manifest   = <%= @path_to_env_code %>/<%= env %>/manifests/site.pp
+    modulepath = <%= @path_to_env_code %>/<%= env %>/modules
+<% end %>

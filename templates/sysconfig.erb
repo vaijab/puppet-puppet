@@ -1,0 +1,11 @@
+#
+# This file is managed by puppet class <%= @name %>
+#
+# Puppet agent daemon startup configuration
+#
+<% if scope.lookupvar('::operatingsystem') == 'Ubuntu' -%>
+START=yes
+DAEMON_OPTS="agent --environment=<%= @environment %> --server=<%= @master %>"
+<% else -%>
+PUPPET_EXTRA_OPTS=--environment=<%= @environment %> --server=<%= @master %>
+<% end -%>

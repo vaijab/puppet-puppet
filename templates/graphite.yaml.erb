@@ -1,0 +1,11 @@
+#
+# This file is managed by puppet class 'puppet::master::reports::graphite'
+#
+# Puppet graphite report processor configuration
+#
+---
+:graphite_endpoint: <%= @endpoint %>
+:graphite_port: <%= @port %>
+<% if @prefix -%>
+:graphite_prefix: <%= @prefix %>
+<% end -%>
