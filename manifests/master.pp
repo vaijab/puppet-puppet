@@ -31,6 +31,7 @@ class puppet::master(
     $puppetdb_server       = $::fqdn,
     $puppetdb_port         = '8081',
     $routes_enabled        = false,
+    $path_to_graph_files   = '/etc/puppet/graphs',
   ) inherits puppet {
   case $::osfamily {
     RedHat: {
@@ -124,6 +125,14 @@ class puppet::master(
     notify  => Service[$service_name], # should this notify?
   } 
 
+  # Where to store graph output
+  file { "${path_to_graph_files}":
+    ensure => directory, # make this a directory
+    recurse => true, # recursive mgmt
+    owner => "root",
+    group => "root",
+    mode => 0775, 
+  } 
 
 
 
