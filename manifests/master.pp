@@ -23,7 +23,7 @@ class puppet::master(
                                'production' ],
     $path_to_env_code      = '/etc/puppet/environments',
     $path_to_hieradata     = '/etc/puppet/hieradata',
-    $hiera_hierarchy       = [ 'environments/%{environment}/nodes/%{fqdn}',
+    $hiera_hierarchy       = [ 'environments/%{environment}/nodes/%{::clientcert}',
                                'environments/%{environment}/roles/%{noderole}',
                                'environments/%{environment}/sites/%{nodesite}',
                                'environments/%{environment}/common' ],
