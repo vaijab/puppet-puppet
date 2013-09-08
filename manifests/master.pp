@@ -23,7 +23,7 @@ class puppet::master(
                                'production' ],
     $path_to_env_code      = '/etc/puppet/environments',
     $path_to_hieradata     = '/etc/puppet/hieradata',
-    $hiera_hierarchy       = [ 'environments/%{environment}/nodes/%{fqdn}',
+    $hiera_hierarchy       = [ 'environments/%{environment}/nodes/%{::clientcert}',
                                'environments/%{environment}/roles/%{noderole}',
                                'environments/%{environment}/sites/%{nodesite}',
                                'environments/%{environment}/common' ],
@@ -31,6 +31,7 @@ class puppet::master(
     $puppetdb_server       = $::fqdn,
     $puppetdb_port         = '8081',
     $routes_enabled        = false,
+    $path_to_graph_files   = '/etc/puppet/graphs',
   ) inherits puppet {
   case $::osfamily {
     RedHat: {
@@ -99,13 +100,41 @@ class puppet::master(
   }
 
   # Where to store non-sensitive hiera data per environment
-  file { "${path_to_hieradata}/environments":
-    ensure  => directory,
-    owner   => 'root',
-    group   => 'puppet',
-    mode    => '0750',
-    require => Package[$package_name],
-  }
+  file { "${path_to_hieradata}":
+    ensure => directory, # make this a directory
+    recurse => true, # recursive mgmt
+    purge => true, # purge unmanaged junk
+    force => true, # including subdirs and links 
+    #owner => "root",
+    #group => "root",
+    mode => 0775, 
+    source => "puppet:///modules/puppet/hieradata",
+    #notify  => Service[$service_name], # should this notify?
+  } 
+
+  # Where to store environment-specific code (manifests and modules)
+  file { "${path_to_env_code}":
+    ensure => directory, # make this a directory
+    recurse => true, # recursive mgmt
+    purge => true, # purge unmanaged junk
+    force => true, # including subdirs and links 
+    #owner => "root",
+    #group => "root",
+    mode => 0775, 
+    source => "puppet:///modules/puppet/environments",
+    notify  => Service[$service_name], # should this notify?
+  } 
+
+  # Where to store graph output
+  file { "${path_to_graph_files}":
+    ensure => directory, # make this a directory
+    recurse => true, # recursive mgmt
+    owner => "root",
+    group => "root",
+    mode => 0775, 
+  } 
+
+
 
   # PuppetDB configuration file for puppetmaster
   file { $puppetdb_config_file:
@@ -142,4 +171,11 @@ class puppet::master(
     content => template("${module_name}/${routes_conf_template}"),
     notify  => Service[$service_name],
   }
+
+
+
+
+
+
+
 }
