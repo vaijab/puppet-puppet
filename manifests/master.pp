@@ -105,8 +105,8 @@ class puppet::master(
     recurse => true, # recursive mgmt
     purge => true, # purge unmanaged junk
     force => true, # including subdirs and links 
-    owner => "root",
-    group => "root",
+    #owner => "root",
+    #group => "root",
     mode => 0775, 
     source => "puppet:///modules/puppet/hieradata",
     #notify  => Service[$service_name], # should this notify?
@@ -118,8 +118,8 @@ class puppet::master(
     recurse => true, # recursive mgmt
     purge => true, # purge unmanaged junk
     force => true, # including subdirs and links 
-    owner => "root",
-    group => "root",
+    #owner => "root",
+    #group => "root",
     mode => 0775, 
     source => "puppet:///modules/puppet/environments",
     notify  => Service[$service_name], # should this notify?
