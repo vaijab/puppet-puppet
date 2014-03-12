@@ -49,7 +49,7 @@ Default: `true`.
     ---
     classes:
       - puppet::agent
-    
+
     puppet::agent::enable: 'false'
     puppet::agent::ensure: 'stopped'
     puppet::agent::master: 'puppet.example.com'
@@ -102,7 +102,7 @@ Use ``${}`` instead of ``%{}`` as the latter will be interpolated by hiera.
     - 'environments/${environment}/common'
 
 
-* `hiera_backeds` - What hiera backends to use. Default: `yaml`. Available backends:
+* `hiera_backends` - What hiera backends to use. Default: `yaml`. Available backends:
 `yaml`, `json`, `eyaml` - it depends on `puppet::hiera::eyaml` class to be included for
 your puppet master.
 
@@ -120,21 +120,21 @@ Enable it only if puppet master is configured to use PuppetDB. Default: `false`.
     ---
     classes:
       - puppet::master
-    
+
     puppet::master::environments:
       - 'development'
       - 'qa'
-    
-    
+
+
     # Using puppet master with PuppetDB as a backend
     ---
     classes:
       - puppet::master
-    
+
     puppet::master::environments:
       - 'development'
       - 'qa'
-    
+
     puppet::master::puppetdb_server: 'puppetdb.example.com'
     puppet::master::routes_enabled: true
 
@@ -171,9 +171,9 @@ Default: `servers.<server-name_example_com>.puppet.reports`.
     classes:
       - puppet::master::reports::graphite
       - puppet::master
-    
+
     puppet::master::reports: 'store, graphite'
-    
+
     puppet::master::reports::graphite::endpoint: mygraphite.example.com
 
 ## Authors
