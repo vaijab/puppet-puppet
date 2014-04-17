@@ -10,7 +10,10 @@ describe 'puppet::agent' do
   
   it { should contain_package('puppet').with(:ensure => 'installed') }
   it { should contain_service('puppet').with(:ensure => 'running') }
-  it { should contain_file('/etc/sysconfig/puppet').with(:mode => '0644',:owner => 'root',:group => 'root')}
+  it { should contain_file('/etc/sysconfig/puppet')
+								.with(:mode => '0644',:owner => 'root',:group => 'root')
+								.with_content(/PUPPET_EXTRA_OPTS="--environment=production --server=puppet"/) 	
+	}
   it { should contain_file('/etc/puppet/puppet.conf').with(:mode => '0640',:owner => 'root',:group => 'root')}
 end
 
