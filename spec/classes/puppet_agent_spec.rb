@@ -16,7 +16,7 @@ require File.expand_path(File.dirname(__FILE__)) + '/../defines/parameters.rb'
     it { should contain_service(service_name).with(:ensure => 'running') }
     it { should contain_file(os_values['agent']['sysconfig_file'])
  								.with(:mode => '0644',:owner => 'root',:group => 'root')
-#  								.with_content(os_values['agent']['sysconfig_file_content']) 	
+  							.with_content(os_values['agent']['sysconfig_file_content']) 	
   	}
     it { should contain_file('/etc/puppet/puppet.conf').with(:mode => '0640',:owner => 'root',:group => 'root')}
   end

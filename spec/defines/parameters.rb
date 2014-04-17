@@ -1,8 +1,4 @@
 @parameters = {
-#  'Debian' => {
-#    'operatingsystem'           => 'Debian',
-#    'osfamily'                  => 'Debian'
-#  },
   'Ubuntu' => {
     'osfamily'        => 'Debian',
     'operatingsystem' => 'Ubuntu',
@@ -15,7 +11,7 @@
       'package_name'            => 'puppet',
       'service_name'            => 'puppet',
       'sysconfig_file'          => '/etc/default/puppet',
-      'sysconfig_file_content'  => /PUPPET_EXTRA_OPTS="--environment=production --server=puppet"/
+      'sysconfig_file_content'  => /DAEMON_OPTS="agent --environment=production --server=puppet"/
     }
   },
   'Fedora' => {
