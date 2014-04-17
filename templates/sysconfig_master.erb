@@ -6,7 +6,7 @@
 <% if scope.lookupvar('::operatingsystem') == 'Ubuntu' -%>
 START=yes
 PORT=8140
-DAEMON_OPTS=--config=<%= @config_file %>
+DAEMON_OPTS="--config=<%= @config_file %>"
 <% else -%>
-PUPPETMASTER_EXTRA_OPTS=--config=<%= @config_file %>
+PUPPETMASTER_EXTRA_OPTS="--config=<%= @config_file %>"
 <% end -%>
