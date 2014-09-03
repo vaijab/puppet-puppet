@@ -20,7 +20,7 @@ class puppet::agent(
     $runinterval = 1800,
   ) inherits puppet {
   case $::operatingsystem {
-    Debian,Ubuntu: {
+    /(Debian|Ubuntu)/: {
       $service_name   = 'puppet'
       $sysconfig_file = '/etc/default/puppet'
     }
@@ -28,7 +28,7 @@ class puppet::agent(
       $service_name   = 'puppetagent'
       $sysconfig_file = '/etc/sysconfig/puppetagent'
     }
-    CentOS, RedHat: {
+    /(CentOS|RedHat)/: {
       $service_name   = 'puppet'
       $sysconfig_file = '/etc/sysconfig/puppet'
     }

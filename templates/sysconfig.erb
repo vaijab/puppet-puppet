@@ -9,3 +9,10 @@ DAEMON_OPTS="agent --environment=<%= @environment %> --server=<%= @master %>"
 <% else -%>
 PUPPET_EXTRA_OPTS="--environment=<%= @environment %> --server=<%= @master %>"
 <% end -%>
+
+<% if scope.lookupvar('::operatingsystem') == 'Debian' -%>
+START=yes
+DAEMON_OPTS="agent --environment=<%= @environment %> --server=<%= @master %>"
+<% else -%>
+PUPPET_EXTRA_OPTS="--environment=<%= @environment %> --server=<%= @master %>"
+<% end -%>
