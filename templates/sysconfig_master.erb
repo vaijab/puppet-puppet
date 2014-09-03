@@ -10,3 +10,11 @@ DAEMON_OPTS="--config=<%= @config_file %>"
 <% else -%>
 PUPPETMASTER_EXTRA_OPTS="--config=<%= @config_file %>"
 <% end -%>
+
+<% if scope.lookupvar('::operatingsystem') == 'Debian' -%>
+START=yes
+PORT=8140
+DAEMON_OPTS="--config=<%= @config_file %>"
+<% else -%>
+PUPPETMASTER_EXTRA_OPTS="--config=<%= @config_file %>"
+<% end -%>

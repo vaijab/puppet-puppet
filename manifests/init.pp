@@ -21,10 +21,10 @@ class puppet(
     $ssldir  = '$vardir/ssl',
   ) {
   case $::osfamily {
-    RedHat: {
+    'RedHat': {
       $package_name = 'puppet'
     }
-    Debian: {
+    'Debian': {
       $package_name = 'puppet'
     }
     default: {
