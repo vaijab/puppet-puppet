@@ -45,6 +45,9 @@ Default: `true`.
 
 * `runinterval` - How often puppet agent runs in seconds. Default: `1800`.
 
+* `certname` - Node’s certificate name, and the name it uses when requesting catalogs;
+defaults to the fully qualified domain name if not set. Default: `undef`.
+
 #### Examples
     ---
     classes:
@@ -54,6 +57,7 @@ Default: `true`.
     puppet::agent::ensure: 'stopped'
     puppet::agent::master: 'puppet.example.com'
     puppet::agent::environment: 'staging'
+    puppet::agent::certname: "%{ec2_instance_id}.example.com"
 
 
 ### puppet::master
