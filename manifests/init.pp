@@ -19,6 +19,7 @@ class puppet(
     $logdir  = '/var/log/puppet',
     $rundir  = '/var/run/puppet',
     $ssldir  = '$vardir/ssl',
+    $package = 'installed'
   ) {
   case $::osfamily {
     'RedHat': {
@@ -33,6 +34,6 @@ class puppet(
   }
 
   package { $package_name:
-    ensure => installed,
+    ensure => $package,
   }
 }
