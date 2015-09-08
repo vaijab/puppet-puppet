@@ -14,12 +14,12 @@
 # - Vaidas Jablonskis <jablonskis@gmail.com>
 #
 class puppet(
-    $vardir         = '/var/lib/puppet',
-    $confdir        = '/etc/puppet',
-    $logdir         = '/var/log/puppet',
-    $rundir         = '/var/run/puppet',
-    $ssldir         = '$vardir/ssl',
-    $package_ensure = 'installed'
+    $vardir  = '/var/lib/puppet',
+    $confdir = '/etc/puppet',
+    $logdir  = '/var/log/puppet',
+    $rundir  = '/var/run/puppet',
+    $ssldir  = '$vardir/ssl',
+    $package = 'installed'
   ) {
   case $::osfamily {
     'RedHat': {
@@ -34,6 +34,6 @@ class puppet(
   }
 
   package { $package_name:
-    ensure => $package_ensure,
+    ensure => $package,
   }
 }

@@ -23,7 +23,7 @@ It is inherited by `puppet::agent` and `puppet::master` classes.
 
 * `ssldir` - Where SSL certificates are kept. Default: ``$vardir/ssl`.
 
-* `package_ensure` - puppet package ensure. Default: `ìnstalled`.
+* `package` - puppet package ensure. Default: `ìnstalled`.
 
 
 ### puppet::agent
