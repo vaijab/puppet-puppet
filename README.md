@@ -50,6 +50,13 @@ Default: `true`.
 * `certname` - Node’s certificate name, and the name it uses when requesting catalogs;
 defaults to the fully qualified domain name if not set. Default: `undef`.
 
+
+### puppet::facter
+This class installs facter.
+
+#### Parameters
+* `package` - facter package ensure. Default: `installed`.
+
 #### Examples
     ---
     classes:
@@ -60,6 +67,8 @@ defaults to the fully qualified domain name if not set. Default: `undef`.
     puppet::agent::master: 'puppet.example.com'
     puppet::agent::environment: 'staging'
     puppet::agent::certname: "%{ec2_instance_id}.example.com"
+    puppet::facter::package: 'latest'
+    puppet::package: 'latest'
 
 
 ### puppet::master
