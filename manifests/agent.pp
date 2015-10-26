@@ -42,8 +42,9 @@ class puppet::agent(
   $conf_template      = 'puppet.conf.erb'
   $sysconfig_template = 'sysconfig.erb'
 
-  service { $service_name:
+  service { 'puppet-agent':
     ensure     => $ensure,
+    name       => $service_name,
     enable     => $enable,
     hasrestart => true,
     hasstatus  => true,
